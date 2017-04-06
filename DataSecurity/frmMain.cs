@@ -76,31 +76,31 @@ namespace Ceasar_Playfair_Vigenere
             dialogGetKey.ShowDialog();
             txtGetKey.Text = dialogGetKey.FileName;
         }
-        string CeasarEncrypt(string plain, string key)
+        string Ceasar_Encrypt(string plain, string key)
         {
             return plain;
         }
-        string PlayfairEncrypt(string plain, string key)
+        string Playfair_Encrypt(string plain, string key)
         {
             return plain;
         }
-        string VigenereEncrypt(string plain, string key)
+        string Vigenere_Encrypt(string plain, string key)
         {
             return plain;
         }
-        string TinyA5Encrypt(string plain, string key)
+        string TinyA5_Encrypt(string plain, string key)
         {
             return plain;
         }
-        string A5Encrypt(string plain, string key)
+        string A5_Encrypt(string plain, string key)
         {
             return plain;
         }
-        string TinyDESEncrypt(string plain, string key)
+        string TinyDES_Encrypt(string plain, string key)
         {
             return plain;
         }
-        string DESEncrypt(string plain, string key)
+        string DES_Encrypt(string plain, string key)
         {
             return plain;
         }
@@ -122,13 +122,13 @@ namespace Ceasar_Playfair_Vigenere
                 string cipher = "";
                 switch (cbboxType.SelectedItem.ToString())
                 {
-                    case "Ceasar": cipher = CeasarEncrypt(plain_text, key); break;
-                    case "Playfair": cipher = PlayfairEncrypt(plain_text, key); break;
-                    case "Vigenere": cipher = VigenereEncrypt(plain_text, key); break;
-                    case "Tiny A5/1": cipher = TinyA5Encrypt(plain_text, key); break;
-                    case "A5/1": cipher = A5Encrypt(plain_text, key); break;
-                    case "Tiny DES": cipher = TinyDESEncrypt(plain_text, key); break;
-                    case "DES": cipher = DESEncrypt(plain_text, key); break;
+                    case "Ceasar":      cipher = Ceasar_Encrypt(plain_text, key); break;
+                    case "Playfair":    cipher = Playfair_Encrypt(plain_text, key); break;
+                    case "Vigenere":    cipher = Vigenere_Encrypt(plain_text, key); break;
+                    case "Tiny A5/1":   cipher = TinyA5_Encrypt(plain_text, key); break;
+                    case "A5/1":        cipher = A5_Encrypt(plain_text, key); break;
+                    case "Tiny DES":    cipher = TinyDES_Encrypt(plain_text, key); break;
+                    case "DES":         cipher = DES_Encrypt(plain_text, key); break;
                 }
 
                 dialogSaveEncryption.Filter = "Text file | *.txt";
@@ -168,31 +168,31 @@ namespace Ceasar_Playfair_Vigenere
             dialogGetKey2.ShowDialog();
             txtGetKey2.Text = dialogGetKey2.FileName;
         }
-        string CeasarDecrypt(string cipher_text, string key)
+        string Ceasar_Decrypt(string cipher_text, string key)
         {
             return cipher_text;
         }
-        string PlayfairDecrypt(string cipher_text, string key)
+        string Playfair_Decrypt(string cipher_text, string key)
         {
             return cipher_text;
         }
-        string VigenereDecrypt(string cipher_text, string key)
+        string Vigenere_Decrypt(string cipher_text, string key)
         {
             return cipher_text;
         }
-        string TinyA5Decrypt(string cipher_text, string key)
+        string TinyA5_Decrypt(string cipher_text, string key)
         {
             return cipher_text;
         }
-        string A5Decrypt(string cipher_text, string key)
+        string A5_Decrypt(string cipher_text, string key)
         {
             return cipher_text;
         }
-        string TinyDESDecrypt(string cipher_text, string key)
+        string TinyDES_Decrypt(string cipher_text, string key)
         {
             return cipher_text;
         }
-        string DESDecrypt(string cipher_text, string key)
+        string DES_Decrypt(string cipher_text, string key)
         {
             return cipher_text;
         }
@@ -214,13 +214,13 @@ namespace Ceasar_Playfair_Vigenere
                 string plain = "";
                 switch (cbboxType.SelectedItem.ToString())
                 {
-                    case "Ceasar": plain = CeasarDecrypt(cipher_text, key); break;
-                    case "Playfair": plain = PlayfairDecrypt(cipher_text, key); break;
-                    case "Vigenere": plain = VigenereDecrypt(cipher_text, key); break;
-                    case "Tiny A5/1": plain = TinyA5Decrypt(cipher_text, key); break;
-                    case "A5/1": plain = A5Decrypt(cipher_text, key); break;
-                    case "Tiny DES": plain = TinyDESDecrypt(cipher_text, key); break;
-                    case "DES": plain = DESDecrypt(cipher_text, key); break;
+                    case "Ceasar":      plain = Ceasar_Decrypt(cipher_text, key); break;
+                    case "Playfair":    plain = Playfair_Decrypt(cipher_text, key); break;
+                    case "Vigenere":    plain = Vigenere_Decrypt(cipher_text, key); break;
+                    case "Tiny A5/1":   plain = TinyA5_Decrypt(cipher_text, key); break;
+                    case "A5/1":        plain = A5_Decrypt(cipher_text, key); break;
+                    case "Tiny DES":    plain = TinyDES_Decrypt(cipher_text, key); break;
+                    case "DES":         plain = DES_Decrypt(cipher_text, key); break;
                 }
 
                 dialogSaveDecryption.Filter = "Text file | *.txt";
