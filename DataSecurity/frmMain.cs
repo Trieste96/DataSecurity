@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataSecurity.SymmetricKey;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -78,15 +79,27 @@ namespace Ceasar_Playfair_Vigenere
         }
         string Ceasar_Encrypt(string plain, string key)
         {
-            return plain;
+			int k = 0;
+			try
+			{
+				k = Convert.ToInt32(key);
+			}
+			catch(Exception)
+			{
+				MessageBox.Show("Bạn chỉ có thể nhập vào một số nguyên cho loại mã hoá này.", "Lưu Ý"
+					, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return "";
+			}
+
+            return Ceasar.Encrypt(plain, k);
         }
         string Playfair_Encrypt(string plain, string key)
         {
-            return plain;
+            return Playfair.Encrypt(plain, key);
         }
         string Vigenere_Encrypt(string plain, string key)
         {
-            return plain;
+            return Vigenere.Encrypt(plain, key);
         }
         string TinyA5_Encrypt(string plain, string key)
         {
@@ -170,15 +183,27 @@ namespace Ceasar_Playfair_Vigenere
         }
         string Ceasar_Decrypt(string cipher_text, string key)
         {
-            return cipher_text;
-        }
+			int k = 0;
+			try
+			{
+				k = Convert.ToInt32(key);
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("Bạn chỉ có thể nhập vào một số nguyên cho loại mã hoá này.", "Lưu Ý"
+					, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return "";
+			}
+
+			return Ceasar.Decrypt(cipher_text, k);
+		}
         string Playfair_Decrypt(string cipher_text, string key)
         {
-            return cipher_text;
+            return Playfair.Decrypt(cipher_text, key);
         }
         string Vigenere_Decrypt(string cipher_text, string key)
         {
-            return cipher_text;
+            return Vigenere.Decrypt(cipher_text, key);
         }
         string TinyA5_Decrypt(string cipher_text, string key)
         {
