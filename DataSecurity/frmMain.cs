@@ -101,21 +101,13 @@ namespace Ceasar_Playfair_Vigenere
         {
             return Vigenere.Encrypt(plain, key);
         }
-        string TinyA5_Encrypt(string plain, string key)
-        {
-            return plain;
-        }
         string A5_Encrypt(string plain, string key)
-        {
-            return plain;
-        }
-        string TinyDES_Encrypt(string plain, string key)
         {
             return plain;
         }
         string DES_Encrypt(string plain, string key)
         {
-            return plain;
+            return DES.Encrypt(plain, key);
         }
         private void btnEncrypt_Click(object sender, EventArgs e)
         {
@@ -138,9 +130,7 @@ namespace Ceasar_Playfair_Vigenere
                     case "Ceasar":      cipher = Ceasar_Encrypt(plain_text, key); break;
                     case "Playfair":    cipher = Playfair_Encrypt(plain_text, key); break;
                     case "Vigenere":    cipher = Vigenere_Encrypt(plain_text, key); break;
-                    case "Tiny A5/1":   cipher = TinyA5_Encrypt(plain_text, key); break;
                     case "A5/1":        cipher = A5_Encrypt(plain_text, key); break;
-                    case "Tiny DES":    cipher = TinyDES_Encrypt(plain_text, key); break;
                     case "DES":         cipher = DES_Encrypt(plain_text, key); break;
                 }
 
