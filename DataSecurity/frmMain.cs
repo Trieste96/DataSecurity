@@ -101,9 +101,137 @@ namespace Ceasar_Playfair_Vigenere
         {
             return Vigenere.Encrypt(plain, key);
         }
-        string A5_Encrypt(string plain, string key)
+        string TinyA5_Encrypt(string plain, string key)
         {
             return plain;
+        }
+        string A5_Encrypt(string br, string k)
+        {
+            //khai báo biến
+            string khoa, khoaX, khoaY, khoaZ, t, br_binary;
+            int m;
+            StringBuilder X, Y, Z, S;
+            X = new StringBuilder();
+            X.Length = 19;
+            Y = new StringBuilder();
+            Y.Length = 22;
+            Z = new StringBuilder();
+            Z.Length = 23;
+            S = new StringBuilder();
+
+            //chia khoá thành các khoá X,Y,Z
+            khoa = k;
+            if (khoa.Length < 64)
+            {
+                int l = khoa.Length;
+                for (int i = 0; i < 64 - l; i++)
+                {
+                    khoa = "0" + khoa;
+                }
+            }
+            khoaX = khoa.Substring(0, 19);
+
+            khoaY = khoa.Substring(19, 22);
+
+            khoaZ = khoa.Substring(41, 23);
+
+            //tạo string bản mã
+            StringBuilder bm = new StringBuilder();
+
+            //Mã hoá A5/1
+            for (int n = 0; n < br.Length; n++)
+            {
+                //chuyển sang chuỗi nhị phân
+                br_binary = Convert.ToString(Convert.ToChar(br[n]), 2);
+                S = new StringBuilder();
+                S.Length = br_binary.Length;
+
+                //tính S
+                for (int i = 0; i < br_binary.Length; i++)
+                {
+                    //tính m;
+                    m = Convert.ToInt32(khoaX[8].ToString()) + Convert.ToInt32(khoaY[10].ToString()) + Convert.ToInt32(khoaZ[10].ToString());
+                    //quay X,Y,Z tuỳ thuộc vào m;
+                    //trường hợp m = 1
+                    if (m >= 2)
+                    {
+                        if (Convert.ToInt32(khoaX[8].ToString()) == 1)
+                        {
+                            t = Convert.ToString(Convert.ToInt32(khoaX[13].ToString()) ^ Convert.ToInt32(khoaX[16].ToString()) ^ Convert.ToInt32(khoaX[17].ToString()) ^ Convert.ToInt32(khoaX[18].ToString()), 2);
+                            for (int j = 18; j > 0; j--)
+                            {
+                                X[j] = khoaX[j - 1];
+                            }
+                            X[0] = Convert.ToChar(t);
+                            khoaX = X.ToString();
+                        }
+
+                        if (Convert.ToInt32(khoaY[10].ToString()) == 1)
+                        {
+                            t = Convert.ToString(Convert.ToInt32(khoaY[20].ToString()) ^ Convert.ToInt32(khoaY[21].ToString()), 2);
+                            for (int j = 21; j > 0; j--)
+                            {
+                                Y[j] = khoaY[j - 1];
+                            }
+                            Y[0] = Convert.ToChar(t);
+                            khoaY = Y.ToString();
+                        }
+
+                        if (Convert.ToInt32(khoaZ[10].ToString()) == 1)
+                        {
+                            t = Convert.ToString(Convert.ToInt32(khoaZ[7].ToString()) ^ Convert.ToInt32(khoaZ[20].ToString()) ^ Convert.ToInt32(khoaZ[21].ToString()) ^ Convert.ToInt32(khoaZ[22].ToString()), 2);
+                            for (int j = 22; j > 0; j--)
+                            {
+                                Z[j] = khoaZ[j - 1];
+                            }
+                            Z[0] = Convert.ToChar(t);
+                            khoaZ = Z.ToString();
+                        }
+                    }
+                    //trường hợp m=0
+                    else
+                    {
+                        if (Convert.ToInt32(khoaX[8].ToString()) == 0)
+                        {
+                            t = Convert.ToString(Convert.ToInt32(khoaX[13].ToString()) ^ Convert.ToInt32(khoaX[16].ToString()) ^ Convert.ToInt32(khoaX[17].ToString()) ^ Convert.ToInt32(khoaX[18].ToString()), 2);
+                            for (int j = 18; j > 0; j--)
+                            {
+                                X[j] = khoaX[j - 1];
+                            }
+                            X[0] = Convert.ToChar(t);
+                            khoaX = X.ToString();
+                        }
+
+                        if (Convert.ToInt32(khoaY[10].ToString()) == 0)
+                        {
+                            t = Convert.ToString(Convert.ToInt32(khoaY[20].ToString()) ^ Convert.ToInt32(khoaY[21].ToString()), 2);
+                            for (int j = 21; j > 0; j--)
+                            {
+                                Y[j] = khoaY[j - 1];
+                            }
+                            Y[0] = Convert.ToChar(t);
+                            khoaY = Y.ToString();
+                        }
+
+                        if (Convert.ToInt32(khoaZ[10].ToString()) == 0)
+                        {
+                            t = Convert.ToString(Convert.ToInt32(khoaZ[7].ToString()) ^ Convert.ToInt32(khoaZ[20].ToString()) ^ Convert.ToInt32(khoaZ[21].ToString()) ^ Convert.ToInt32(khoaZ[22].ToString()), 2);
+                            for (int j = 22; j > 0; j--)
+                            {
+                                Z[j] = khoaZ[j - 1];
+                            }
+                            Z[0] = Convert.ToChar(t);
+                            khoaZ = Z.ToString();
+                        }
+                    }
+
+                    //thêm bit vào S
+                    S[i] = Convert.ToChar(Convert.ToString(Convert.ToInt32(khoaX[18].ToString()) ^ Convert.ToInt32(khoaY[21].ToString()) ^ Convert.ToInt32(khoaZ[22].ToString()), 2));
+                }
+                // thêm kí tự vào bản mã
+                bm.Append(Convert.ToChar(Convert.ToInt32(Convert.ToString(Convert.ToInt32(br_binary, 2) ^ Convert.ToInt32(S.ToString(), 2), 2), 2)));
+            }
+            return bm.ToString();
         }
         string DES_Encrypt(string plain, string key)
         {
